@@ -46,7 +46,7 @@ namespace peak_cam
 
 struct Peak_Params
 {
-    std::string selectedDevice{"000000"}; // default to all 0's
+    std::string selectedDevice{"4104494217"}; // default to all 0's
     int ExposureTime{100};
     std::string TriggerSource{"Off"};
     std::string TriggerActivation{"RisingEdge"};
@@ -55,11 +55,11 @@ struct Peak_Params
     double AcquisitionFrameRate{1.0};
     int ImageHeight{480};
     int ImageWidth{640};
-    double Gamma{1.2};
-    std::string ExposureAuto{"Off"};
-    std::string GainAuto{"Off"};
-    std::string GainSelector;
-    std::string PixelFormat;
+    //double Gamma{1.2};
+    //std::string ExposureAuto{"Off"};
+    //std::string GainAuto{"Off"};
+    //std::string GainSelector;
+    // std::string PixelFormat;
     int DeviceLinkThroughputLimit{125000000};
 };
 

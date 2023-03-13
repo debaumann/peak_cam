@@ -187,26 +187,29 @@ void Peak_Cam::setDeviceParameters()
         ROS_INFO_STREAM("[PEAK_CAM]: ImageHeight is set to '" << peak_params.ImageHeight << "'");
         m_nodeMapRemoteDevice->FindNode<peak::core::nodes::IntegerNode>("OffsetX")->SetValue((maxWidth - peak_params.ImageWidth) / 2);
         m_nodeMapRemoteDevice->FindNode<peak::core::nodes::IntegerNode>("OffsetY")->SetValue((maxHeight - peak_params.ImageHeight) / 2);
-	
+	/*
         //Set GainAuto Parameter
         m_nodeMapRemoteDevice->FindNode<peak::core::nodes::EnumerationNode>("GainAuto")->SetCurrentEntry(peak_params.GainAuto);
         ROS_INFO_STREAM("[PEAK_CAM]: GainAuto is set to '" << peak_params.GainAuto << "'");
-
+*/
         //Set GainSelector Parameter
+        /*
         m_nodeMapRemoteDevice->FindNode<peak::core::nodes::EnumerationNode>("GainSelector")->SetCurrentEntry(peak_params.GainSelector);
         ROS_INFO_STREAM("[PEAK_CAM]: GainSelector is set to '" << peak_params.GainSelector << "'");
+*/
 
         //Set ExposureAuto Parameter
+        /*
         m_nodeMapRemoteDevice->FindNode<peak::core::nodes::EnumerationNode>("ExposureAuto")->SetCurrentEntry(peak_params.ExposureAuto);
         ROS_INFO_STREAM("[PEAK_CAM]: ExposureAuto is set to '" << peak_params.ExposureAuto << "'");
-
+*/
 
         //Set ExposureTime Parameter
-        if(peak_params.ExposureAuto == "Off")
-        {
-            m_nodeMapRemoteDevice->FindNode<peak::core::nodes::FloatNode>("ExposureTime")->SetValue(peak_params.ExposureTime);
-            ROS_INFO_STREAM("[PEAK_CAM]: ExposureTime is set to " << peak_params.ExposureTime << " microseconds");
-        }
+        // if(peak_params.ExposureAuto == "Off")
+        // {
+        //     m_nodeMapRemoteDevice->FindNode<peak::core::nodes::FloatNode>("ExposureTime")->SetValue(peak_params.ExposureTime);
+        //     ROS_INFO_STREAM("[PEAK_CAM]: ExposureTime is set to " << peak_params.ExposureTime << " microseconds");
+        // }
 
         //Set DeviceLinkThroughputLimit Parameter
         m_nodeMapRemoteDevice->FindNode<peak::core::nodes::IntegerNode>("DeviceLinkThroughputLimit")->SetValue(peak_params.DeviceLinkThroughputLimit);
@@ -235,37 +238,37 @@ void Peak_Cam::setDeviceParameters()
         }
 
         //Set Line1 (flash output) signal source
-        m_nodeMapRemoteDevice->FindNode<peak::core::nodes::EnumerationNode>("LineSelector")->SetCurrentEntry("Line1");
-        m_nodeMapRemoteDevice->FindNode<peak::core::nodes::EnumerationNode>("LineSource")->SetCurrentEntry(peak_params.Line1Source);
-        ROS_INFO_STREAM("[PEAK_CAM]: Flash output configured to " << peak_params.Line1Source);
+        //m_nodeMapRemoteDevice->FindNode<peak::core::nodes::EnumerationNode>("LineSelector")->SetCurrentEntry("Line1");
+        // m_nodeMapRemoteDevice->FindNode<peak::core::nodes::EnumerationNode>("LineSource")->SetCurrentEntry(peak_params.Line1Source);
+        // ROS_INFO_STREAM("[PEAK_CAM]: Flash output configured to " << peak_params.Line1Source);
 
         //Set Gamma Parameter
-        m_nodeMapRemoteDevice->FindNode<peak::core::nodes::FloatNode>("Gamma")->SetValue(peak_params.Gamma);
-        ROS_INFO_STREAM("[PEAK_CAM]: Gamma is set to " << peak_params.Gamma);
+        // m_nodeMapRemoteDevice->FindNode<peak::core::nodes::FloatNode>("Gamma")->SetValue(peak_params.Gamma);
+        // ROS_INFO_STREAM("[PEAK_CAM]: Gamma is set to " << peak_params.Gamma);
 
         //Set PixelFormat Parameter
-        m_nodeMapRemoteDevice->FindNode<peak::core::nodes::EnumerationNode>("PixelFormat")->SetCurrentEntry(peak_params.PixelFormat);
-        ROS_INFO_STREAM("[PEAK_CAM]: PixelFormat is set to '" << peak_params.PixelFormat << "'");
+        // m_nodeMapRemoteDevice->FindNode<peak::core::nodes::EnumerationNode>("PixelFormat")->SetCurrentEntry(peak_params.PixelFormat);
+        // ROS_INFO_STREAM("[PEAK_CAM]: PixelFormat is set to '" << peak_params.PixelFormat << "'");
         
-        //Set Parameters for ROS Image
-        if (peak_params.PixelFormat == "Mono8")
-        {
-            pixel_format_name = peak::ipl::PixelFormatName::Mono8;
-            image_for_encoding.encoding = sensor_msgs::image_encodings::MONO8;
+        // //Set Parameters for ROS Image
+        // if (peak_params.PixelFormat == "Mono8")
+        // {
+        //     pixel_format_name = peak::ipl::PixelFormatName::Mono8;
+        //     image_for_encoding.encoding = sensor_msgs::image_encodings::MONO8;
         
-        }
-        else if(peak_params.PixelFormat == "RGB8")
-        {
-            pixel_format_name = peak::ipl::PixelFormatName::RGB8;
-            image_for_encoding.encoding = sensor_msgs::image_encodings::RGB8;
+        // }
+        // else if(peak_params.PixelFormat == "RGB8")
+        // {
+        pixel_format_name = peak::ipl::PixelFormatName::RGB8;
+        image_for_encoding.encoding = sensor_msgs::image_encodings::RGB8;
         
-        }        
-        else if(peak_params.PixelFormat == "BGR8")
-        {
-            pixel_format_name = peak::ipl::PixelFormatName::BGR8;
-            image_for_encoding.encoding = sensor_msgs::image_encodings::BGR8;
+        // }        
+        // else if(peak_params.PixelFormat == "BGR8")
+        // {
+        //     pixel_format_name = peak::ipl::PixelFormatName::BGR8;
+        //     image_for_encoding.encoding = sensor_msgs::image_encodings::BGR8;
         
-        }      
+        // }      
     }
     catch (const std::exception& e)
     {
@@ -289,10 +292,10 @@ void Peak_Cam::acquisitionLoop()
             auto image = peak::BufferTo<peak::ipl::Image>(buffer).ConvertTo(pixel_format_name);
 
             cv::Mat cvImage;
-            if (peak_params.PixelFormat == "Mono8")
-                cvImage = cv::Mat::zeros(image.Height(), image.Width(), CV_8UC1);
-            else
-                cvImage = cv::Mat::zeros(image.Height(), image.Width(), CV_8UC3);
+            // if (peak_params.PixelFormat == "Mono8")
+            //     cvImage = cv::Mat::zeros(image.Height(), image.Width(), CV_8UC1);
+            // else
+            cvImage = cv::Mat::zeros(image.Height(), image.Width(), CV_8UC3);
 
             int sizeBuffer = static_cast<int>(image.ByteCount());
 
@@ -381,16 +384,16 @@ void Peak_Cam::reconfigureRequest(const Config &config, uint32_t level)
     peak_params.TriggerSource = config.TriggerSource;
     peak_params.TriggerActivation = config.TriggerActivation;
     peak_params.TriggerDivider = config.TriggerDivider;
-    peak_params.Line1Source = config.Line1Source;
+    //peak_params.Line1Source = config.Line1Source;
     peak_params.AcquisitionFrameRate = config.AcquisitionFrameRate;
-    peak_params.Gamma = config.Gamma;
+    // peak_params.Gamma = config.Gamma;
 
     peak_params.selectedDevice = config.selectedDevice;
 
-    peak_params.GainAuto = config.GainAuto;
-    peak_params.GainSelector = config.GainSelector;    
-    peak_params.ExposureAuto = config.ExposureAuto;
-    peak_params.PixelFormat = config.PixelFormat;
+    //peak_params.GainAuto = config.GainAuto;
+    //peak_params.GainSelector = config.GainSelector;    
+    //peak_params.ExposureAuto = config.ExposureAuto;
+    // peak_params.PixelFormat = config.PixelFormat;
 
     peak_params.DeviceLinkThroughputLimit = config.DeviceLinkThroughputLimit;
     
