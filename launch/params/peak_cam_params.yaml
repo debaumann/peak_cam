@@ -21,7 +21,7 @@ selectedDevice: "4104494217"
 # configure your desired image size
 # needs to be divisble by 8 and smaller than your imager size (Max Width, Max Height)
 ImageHeight: 1080
-ImageWidth: 1728
+ImageWidth: 1440
 
 # Pixelformat
 # In IDS Implemented: ["Mono8", "Mono10", "Mono12", "Mono10p", "Mono12p", "BayerRG8", "BayerRG10", "BayerRG12", "BayerRG10p", "BayerRG12p", "RGB8", "RGB10p32", "BGR8", "BGR10p32"]
