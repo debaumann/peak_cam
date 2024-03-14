@@ -20,8 +20,8 @@ selectedDevice: "4104494217"
 
 # configure your desired image size
 # needs to be divisble by 8 and smaller than your imager size (Max Width, Max Height)
-ImageHeight: 1080
-ImageWidth: 1440
+ImageHeight: 1120
+ImageWidth: 1680
 
 # Pixelformat
 # In IDS Implemented: ["Mono8", "Mono10", "Mono12", "Mono10p", "Mono12p", "BayerRG8", "BayerRG10", "BayerRG12", "BayerRG10p", "BayerRG12p", "RGB8", "RGB10p32", "BGR8", "BGR10p32"]
@@ -59,7 +59,7 @@ TriggerDivider: 1
 
 # AcquisitionFrameRate in Hz
 # WATCH OUT when AcquisitionFrameRate is too high there might be some latency. Check "rostopic hz /cameratopic"
-AcquisitionFrameRate: 20
+AcquisitionFrameRate: 30
 
 # Gamma
 # Range [0.3, ..., 3.0]
